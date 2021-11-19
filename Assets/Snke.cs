@@ -5,9 +5,13 @@ public class Snke : MonoBehaviour
 {
     private Vector2 _direction = Vector2.right;
     private List<Transform> _segments = new List<Transform>();
+    private bool gameOver = false;
+
     public Transform segmentPrefab;
 
     public int initalSize;
+
+    public GameOverScreen gameOverScreen;
 
     private void Start() {
         ResetState();
@@ -28,6 +32,10 @@ public class Snke : MonoBehaviour
     }
 
     private void FixedUpdate() {
+
+        if(this.gameOver) {
+            return;
+        }
 
         for (int i = _segments.Count -1 ; i > 0; i--)
         {
@@ -52,12 +60,17 @@ public class Snke : MonoBehaviour
             ScoreManager.instance.AddPoint();
             Grow();
         } else if (other.tag == "Obstacle") {
-            ResetState();
+            GameOver();
         }
     }
 
+    public void GameOver() {
+        this.gameOver = true;
+        gameOverScreen.setup(ScoreManager.instance.GetPoints());
+    }
+
     private void ResetState()
-    {   
+    {   this.gameOver = false;
         ScoreManager.instance.Reset();
 
         for (int i = 1; i < _segments.Count; i++)

@@ -29,4 +29,8 @@ public class ScoreManager : MonoBehaviour
         score = 0;
         updateText();
     }
+
+    public int GetPoints() {
+        return score;
+    }
 }
