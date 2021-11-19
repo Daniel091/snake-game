@@ -50,6 +50,7 @@ public class Snke : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Food") {
+            ScoreManager.instance.AddPoint();
             Grow();
         } else if (other.tag == "Obstacle") {
             ResetState();
@@ -58,6 +59,8 @@ public class Snke : MonoBehaviour
 
     private void ResetState()
     {   
+        ScoreManager.instance.Reset();
+
         for (int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
