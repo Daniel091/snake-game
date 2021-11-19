@@ -29,6 +29,25 @@ public class Snke : MonoBehaviour
         } else if(Input.GetKeyDown(KeyCode.D)) {
             _direction = Vector2.right;
         }
+
+        if(Input.GetMouseButtonDown(0)) {
+            Vector3 pos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+            
+            if(Mathf.Abs(pos.x) > Mathf.Abs(pos.y)) {
+                if(pos.x > 0) {
+                    _direction = Vector2.right;
+                } else {
+                    _direction = Vector2.left;
+                }
+            } else {
+                if(pos.y > 0) {
+                    _direction = Vector2.up;
+                } else {
+                    _direction = Vector2.down;
+                }
+            }
+        }
+
     }
 
     private void FixedUpdate() {

@@ -72,4 +72,7 @@ crashlytics-build.properties
 
 .DS_Store
 /[Aa]ssets/TextMesh Pro
+/public
+*.cache
+.firebaserc
 
