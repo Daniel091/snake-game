@@ -29,7 +29,8 @@ public class Snke : MonoBehaviour
         } else if(Input.GetKeyDown(KeyCode.D)) {
             _direction = Vector2.right;
         }
-
+        
+        // Add touch control w/ mouse 
         if(Input.GetMouseButtonDown(0)) {
             Vector3 pos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
             
@@ -56,6 +57,7 @@ public class Snke : MonoBehaviour
             return;
         }
 
+        // moves segments of snake in reverse
         for (int i = _segments.Count -1 ; i > 0; i--)
         {
             _segments[i].position = _segments[i-1].position;
